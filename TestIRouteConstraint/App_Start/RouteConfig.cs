@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using TestIRouteConstraint.App_Start;
 
 namespace TestIRouteConstraint
 {
@@ -12,6 +13,13 @@ namespace TestIRouteConstraint
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                name: "CmsRoute",
+                url: "{*permalink}",
+                defaults: new { controller = "Home", action = "Index" },
+                constraints: new { permalink = new CmsUrlConstraint() }
+            );
 
             routes.MapRoute(
                 name: "Default",
