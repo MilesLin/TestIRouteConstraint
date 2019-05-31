@@ -10,6 +10,7 @@ namespace TestIRouteConstraint.Services
     {
         public async Task<string> GetNav()
         {
+            // 模擬使用 EF 的 async 方法取得資料
             return await Task.Run(() => "market");
         }
     }
