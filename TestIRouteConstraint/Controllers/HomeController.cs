@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TestIRouteConstraint.Models;
 
 namespace TestIRouteConstraint.Controllers
 {
@@ -10,6 +11,15 @@ namespace TestIRouteConstraint.Controllers
     {
         public ActionResult Index()
         {
+            using (var db = new ProductContext())
+            {
+                db.Product.Add(new Product
+                {
+                    Name = Guid.NewGuid().ToString()
+                });
+
+                db.SaveChanges();
+            }
             return View();
         }
 
